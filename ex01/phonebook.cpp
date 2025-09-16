@@ -6,7 +6,7 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 09:44:54 by mdahani           #+#    #+#             */
-/*   Updated: 2025/09/14 16:57:57 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/09/16 16:22:16 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,15 @@ static bool isDigit(std::string value){
         return false;
     }
     for (size_t i = 0; i < value.length(); i++){
+        if (value[i] == '+' && i == 0)
+        {
+            continue;
+        }
+        
+        if (value[i] == '+' && i != 0)
+        {
+            return false;
+        }
         
         if (!std::isdigit(value[i]))
         {
