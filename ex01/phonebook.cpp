@@ -6,15 +6,63 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 09:44:54 by mdahani           #+#    #+#             */
-/*   Updated: 2025/09/16 16:22:16 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/09/16 19:23:40 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
 
+// format the text
+std::string PhoneBook::formatField(std::string str){
+    if (str.length() > 10){
+        return str.substr(0, 9) + ".";
+    }
+    return str;
+};
+
+// Add contact
+void PhoneBook::addContact(Contact contact){
+    contacts[getTotalContacts() % getMaxContacts()] = contact;
+    incrementTotalContacts();
+}
+
+// search a contact
+void PhoneBook::searchContact(int index){
+    if (index < 0 || index >= getTotalContacts()) {
+        std::cout << "Invalid index!" << std::endl;
+        return;
+    }
+    std::cout << "\nFull contact information:" << std::endl;
+    std::cout << "First Name    : " << contacts[index].getFirstName() << std::endl;
+    std::cout << "Last Name     : " << contacts[index].getLastName() << std::endl;
+    std::cout << "Nickname      : " << contacts[index].getNickName() << std::endl;
+    std::cout << "Phone Number  : " << contacts[index].getPhoneNumber() << std::endl;
+    std::cout << "Darkest Secret: " << contacts[index].getDarkestSecret() << std::endl;
+}
+
+// display all Contacts
+bool PhoneBook::displayAllContacts(){
+    if (getTotalContacts() == 0) {
+        std::cout << "There are no contacts to display!" << std::endl;
+        return false;
+    }
+    std::cout << "+----------+----------+----------+----------+" << std::endl;
+    std::cout << "|   Index  |First Name| Last Name| Nickname |" << std::endl;
+    std::cout << "+----------+----------+----------+----------+" << std::endl;
+    for (int i = 0; i < getTotalContacts() && i < getMaxContacts(); i++) {
+        std::cout << "|" << std::setw(10) << i
+                << "|" << std::setw(10) << formatField(contacts[i].getFirstName())
+                << "|" << std::setw(10) << formatField(contacts[i].getLastName())
+                << "|" << std::setw(10) << formatField(contacts[i].getNickName())
+                << "|" << std::endl;
+    }
+    std::cout << "+----------+----------+----------+----------+" << std::endl;
+    return true;
+}
+
 PhoneBook myPhoneBook;
 
-std::string getLine(){
+std::string handleLine(){
     std::string line;
     while (true) {
         std::getline(std::cin, line);
@@ -60,32 +108,32 @@ void addNewContact(){
     
     // First Name
     std::cout << "First Name: ";
-    input = getLine();
+    input = handleLine();
     newContact.setFirstName(input);
 
     // Last Name
     std::cout << "Last Name: ";
-    input = getLine();
+    input = handleLine();
     newContact.setLastName(input);
 
     // Nick Name
     std::cout << "Nick Name: ";
-    input = getLine();
+    input = handleLine();
     newContact.setNickName(input);
 
     // Phone Number
     std::cout << "Phone Number: ";
-    input = getLine();
+    input = handleLine();
     while (!isDigit(input))
     {
         std::cout << "Phone Number must contain only digits. Try again: ";
-        input = getLine();
+        input = handleLine();
     }
     newContact.setPhoneNumber(input);
 
     // Darkest Secret
     std::cout << "Darkest Secret: ";
-    input = getLine();
+    input = handleLine();
     newContact.setDarkestSecret(input);
     
     // Add this contact to my phone book
@@ -93,15 +141,18 @@ void addNewContact(){
     std::cout << "Contact added!" << std::endl;
 }
 
-void displayAllContacts(){
-    myPhoneBook.displayAllContacts();
+void showAllContacts(){
+    if (!myPhoneBook.displayAllContacts())
+    {
+        return;
+    }
     std::cout << "Enter index to view details: ";
     std::string input;
-    input = getLine();
+    input = handleLine();
     while (!isDigit(input))
     {
         std::cout << "index must contain only digits. Try again: ";
-        input = getLine();
+        input = handleLine();
     }
     // change string to int
     int index = atoi(input.c_str());

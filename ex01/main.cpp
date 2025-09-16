@@ -6,23 +6,29 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 11:48:27 by mdahani           #+#    #+#             */
-/*   Updated: 2025/09/14 16:09:48 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/09/16 19:22:29 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
 
-int main(){
+int main(int ac, char **av){
+    if (ac != 1)
+    {
+        std::cout << "Please enter only name of programe [phonebook]" << std::endl;
+        return 1;
+    }
+    (void)av;
     std::string command;
     while (true)
     {
         std::cout << "Enter command (ADD, SEARCH, EXIT): " << std::endl;
-        command = getLine();
+        command = handleLine();
         if (command == "ADD") {
             addNewContact();
         }
         else if (command == "SEARCH") {
-            displayAllContacts();
+            showAllContacts();
         }
         else if (command == "EXIT") {
             std::cout << "Exiting program ..." << std::endl;
