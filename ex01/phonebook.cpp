@@ -12,6 +12,56 @@
 
 #include "phonebook.hpp"
 
+// * Setters and Getters Of Contact
+// setters
+void Contact::setFirstName(std::string value){
+    this->firstName = value;
+}
+void Contact::setLastName(std::string value){
+    this->lastName = value;
+}
+void Contact::setNickName(std::string value){
+    this->nickName = value;
+}
+void Contact::setPhoneNumber(std::string value){
+    this->phoneNumber = value;
+}
+void Contact::setDarkestSecret(std::string value){
+   this-> darkestSecret = value;
+}
+
+// getters
+std::string Contact::getFirstName(){
+    return this->firstName;
+}
+std::string Contact::getLastName(){
+    return this->lastName;
+}
+std::string Contact::getNickName(){
+    return this->nickName;
+}
+std::string Contact::getPhoneNumber(){
+    return this->phoneNumber;
+}
+std::string Contact::getDarkestSecret(){
+    return this->darkestSecret;
+}
+
+ // * getters and setters of phonebook:
+// setters
+void PhoneBook::incrementTotalContacts(){
+    this->totalContacts++;
+}
+
+// gertters
+int PhoneBook::getMaxContacts(){
+    return this->maxContacts;
+}
+
+int PhoneBook::getTotalContacts(){
+    return this->totalContacts;
+}
+
 // format the text
 std::string PhoneBook::formatField(std::string str){
     if (str.length() > 10){

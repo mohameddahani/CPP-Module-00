@@ -17,38 +17,18 @@ class Contact {
         std::string darkestSecret;
     public:
         // setters
-        void setFirstName(std::string value){
-            firstName = value;
-        }
-        void setLastName(std::string value){
-            lastName = value;
-        }
-        void setNickName(std::string value){
-            nickName = value;
-        }
-        void setPhoneNumber(std::string value){
-            phoneNumber = value;
-        }
-        void setDarkestSecret(std::string value){
-            darkestSecret = value;
-        }
+        void setFirstName(std::string value);
+        void setLastName(std::string value);
+        void setNickName(std::string value);
+        void setPhoneNumber(std::string value);
+        void setDarkestSecret(std::string value);
 
         // getters
-        std::string getFirstName(){
-            return firstName;
-        }
-        std::string getLastName(){
-            return lastName;
-        }
-        std::string getNickName(){
-            return nickName;
-        }
-        std::string getPhoneNumber(){
-            return phoneNumber;
-        }
-        std::string getDarkestSecret(){
-            return darkestSecret;
-        }
+        std::string getFirstName();
+        std::string getLastName();
+        std::string getNickName();
+        std::string getPhoneNumber();
+        std::string getDarkestSecret();
 };
 
 class PhoneBook {
@@ -71,18 +51,12 @@ class PhoneBook {
         // getters and setters:
         
         // setters
-        void incrementTotalContacts(){
-            totalContacts++;
-        }
+        void incrementTotalContacts();
 
         // gertters
-        int getMaxContacts(){
-            return maxContacts;
-        }
+        int getMaxContacts();
 
-        int getTotalContacts(){
-            return totalContacts;
-        }
+        int getTotalContacts();
     };
     
 
