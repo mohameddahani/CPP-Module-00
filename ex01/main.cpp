@@ -6,7 +6,7 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 11:48:27 by mdahani           #+#    #+#             */
-/*   Updated: 2025/09/16 19:22:29 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/09/28 19:43:11 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main(int ac, char **av){
     if (ac != 1)
     {
-        std::cout << "Please enter only name of programe [phonebook]" << std::endl;
+        std::cout << "Please enter only name of program [phonebook]" << std::endl;
         return 1;
     }
     (void)av;

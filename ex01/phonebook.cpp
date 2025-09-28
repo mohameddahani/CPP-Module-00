@@ -6,11 +6,16 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 09:44:54 by mdahani           #+#    #+#             */
-/*   Updated: 2025/09/16 19:23:40 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/09/28 19:38:05 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
+
+// * Constructor
+PhoneBook::PhoneBook(){
+    this->totalContacts = 0;
+}
 
 // * Setters and Getters Of Contact
 // setters

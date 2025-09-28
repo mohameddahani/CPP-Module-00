@@ -39,9 +39,7 @@ class PhoneBook {
         std::string formatField(std::string str);
     public:
     // constructor
-    PhoneBook(){
-        totalContacts = 0;
-    }
+    PhoneBook();
 
         void addContact(Contact contact);
         void searchContact(int index);
