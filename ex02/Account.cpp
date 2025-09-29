@@ -6,7 +6,7 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 11:59:06 by mdahani           #+#    #+#             */
-/*   Updated: 2025/09/15 18:35:27 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/09/29 11:27:27 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include <iostream>
 #include <ctime>
 
-// definition of static variables to reserves a place in memory
+// * definition of static variables to reserves a place in memory
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
-// Constructor
+// * Constructor
 Account::Account(int initial_deposit){
     this->_accountIndex = _nbAccounts;
     this->_amount = initial_deposit;
@@ -35,7 +35,7 @@ Account::Account(int initial_deposit){
 		<< "created" << std::endl;
 }
 
-// Destructor
+// * Destructor
 Account::~Account(){
     _nbAccounts--;
     _totalAmount -= this->_amount;
@@ -46,7 +46,7 @@ Account::~Account(){
 		<< "closed" << std::endl;
 }
 
-// Methodes
+// * Methodes (Getters & Setters)
 int Account::getNbAccounts(){
     return _nbAccounts;
 }
@@ -66,28 +66,34 @@ int Account::getNbWithdrawals(){
 void Account::displayAccountsInfos(){
     _displayTimestamp();
     std::cout << "accounts:" << getNbAccounts() << ";" << "total:" << getTotalAmount() << ";"
-        << "deposits:" << getNbDeposits() << ";" << "withdrawals:" << getNbWithdrawals() << ";"
+        << "deposits:" << getNbDeposits() << ";" << "withdrawals:" << getNbWithdrawals()
         << std::endl;
 }
 
 void Account::makeDeposit(int deposit){
-    _displayTimestamp();
-    std::cout << "index:" << this->_accountIndex << ";" << "amount:" << this->_amount << ";"
-        << "deposits:" << this->_nbDeposits << ";" << "withdrawals:" << this->_nbWithdrawals << ";"
-        << "closed" << std::endl;
+    // ! prev_amount
+    int prevAmount = this->_amount;
 
     this->_amount += deposit;
     _totalAmount += deposit;
     _totalNbDeposits++;
     this->_nbDeposits++;
+    
+     _displayTimestamp();
+    std::cout << "index:" << this->_accountIndex << ";" << "p_amount:" << prevAmount << ";"
+        << "deposit:" << deposit << ";" << "amount:" << this->_amount << ";" << "nb_deposits:"
+        << this->_nbDeposits << std::endl;
 }
 
 bool Account::makeWithdrawal(int withdrawal){
-    _displayTimestamp();
-    std::cout << "index:" << this->_accountIndex << ";" << "p_amount:" << this->_amount << ";" << "withdrawal:";
+    // ! prev_amount
+    int prevAmount = this->_amount;
 
-    if (withdrawal > this->_amount){
-        std::cout << "refused" << std::endl;
+    _displayTimestamp();
+    std::cout << "index:" << this->_accountIndex << ";" << "p_amount:";
+
+    if (withdrawal > this->checkAmount()){
+        std::cout << this->_amount << ";" << "withdrawal:refused" << std::endl;
         return false;
     }
 
@@ -96,8 +102,8 @@ bool Account::makeWithdrawal(int withdrawal){
     this->_nbWithdrawals++;
     _totalNbWithdrawals++;
 
-    std::cout << withdrawal << ";" << "amount:" << this->_amount << ";" << "nb_withdrawals:" << this->_nbWithdrawals
-              << std::endl;
+    std::cout << prevAmount << ";" << "withdrawal:" << withdrawal << ";" << "amount:" << this->_amount << ";"
+        << "nb_withdrawals:" << this->_nbWithdrawals << std::endl;
 
     return true;
 }
@@ -110,7 +116,7 @@ int Account::checkAmount() const {
 void Account::displayStatus() const {
     _displayTimestamp();
     std::cout << "index:" << this->_accountIndex << ";" << "amount:" << this->_amount << ";"
-        << "deposits:" << this->_nbDeposits << ";" << "withdrawals:" << this->_nbWithdrawals << ";"
+        << "deposits:" << this->_nbDeposits << ";" << "withdrawals:" << this->_nbWithdrawals
         << std::endl;
 }
 
