@@ -6,7 +6,7 @@
 /*   By: mdahani <mdahani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 09:44:54 by mdahani           #+#    #+#             */
-/*   Updated: 2025/09/28 19:38:05 by mdahani          ###   ########.fr       */
+/*   Updated: 2025/09/29 11:49:32 by mdahani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int PhoneBook::getTotalContacts(){
     return this->totalContacts;
 }
 
-// format the text
+// * format the text
 std::string PhoneBook::formatField(std::string str){
     if (str.length() > 10){
         return str.substr(0, 9) + ".";
@@ -75,13 +75,13 @@ std::string PhoneBook::formatField(std::string str){
     return str;
 };
 
-// Add contact
+// * Add contact
 void PhoneBook::addContact(Contact contact){
     contacts[getTotalContacts() % getMaxContacts()] = contact;
     incrementTotalContacts();
 }
 
-// search a contact
+// * search a contact
 void PhoneBook::searchContact(int index){
     if (index < 0 || index >= getTotalContacts()) {
         std::cout << "Invalid index!" << std::endl;
@@ -95,7 +95,7 @@ void PhoneBook::searchContact(int index){
     std::cout << "Darkest Secret: " << contacts[index].getDarkestSecret() << std::endl;
 }
 
-// display all Contacts
+// * display all Contacts
 bool PhoneBook::displayAllContacts(){
     if (getTotalContacts() == 0) {
         std::cout << "There are no contacts to display!" << std::endl;
@@ -161,22 +161,22 @@ void addNewContact(){
     Contact newContact;
     std::string input;
     
-    // First Name
+    // * First Name
     std::cout << "First Name: ";
     input = handleLine();
     newContact.setFirstName(input);
 
-    // Last Name
+    // * Last Name
     std::cout << "Last Name: ";
     input = handleLine();
     newContact.setLastName(input);
 
-    // Nick Name
+    // * Nick Name
     std::cout << "Nick Name: ";
     input = handleLine();
     newContact.setNickName(input);
 
-    // Phone Number
+    // * Phone Number
     std::cout << "Phone Number: ";
     input = handleLine();
     while (!isDigit(input))
@@ -186,12 +186,12 @@ void addNewContact(){
     }
     newContact.setPhoneNumber(input);
 
-    // Darkest Secret
+    // * Darkest Secret
     std::cout << "Darkest Secret: ";
     input = handleLine();
     newContact.setDarkestSecret(input);
     
-    // Add this contact to my phone book
+    // * Add this contact to my phone book
     myPhoneBook.addContact(newContact);
     std::cout << "Contact added!" << std::endl;
 }
@@ -209,7 +209,7 @@ void showAllContacts(){
         std::cout << "index must contain only digits. Try again: ";
         input = handleLine();
     }
-    // change string to int
+    // * change string to int
     int index = atoi(input.c_str());
     myPhoneBook.searchContact(index);
 }

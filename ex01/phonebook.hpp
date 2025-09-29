@@ -1,13 +1,13 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-// includes
+// * includes
 #include <iostream>
 #include <string>
 #include <iomanip>
 #include <cstdlib>
 
-// classes
+// * classes
 class Contact {
     private:
         std::string firstName;
@@ -16,14 +16,14 @@ class Contact {
         std::string phoneNumber;
         std::string darkestSecret;
     public:
-        // setters
+        // * setters
         void setFirstName(std::string value);
         void setLastName(std::string value);
         void setNickName(std::string value);
         void setPhoneNumber(std::string value);
         void setDarkestSecret(std::string value);
 
-        // getters
+        // * getters
         std::string getFirstName();
         std::string getLastName();
         std::string getNickName();
@@ -38,7 +38,7 @@ class PhoneBook {
         int totalContacts;
         std::string formatField(std::string str);
     public:
-    // constructor
+    // * constructor
     PhoneBook();
 
         void addContact(Contact contact);
@@ -46,19 +46,19 @@ class PhoneBook {
         bool displayAllContacts();
 
 
-        // getters and setters:
+        // * getters and setters:
         
-        // setters
+        // * setters
         void incrementTotalContacts();
 
-        // gertters
+        // * gertters
         int getMaxContacts();
 
         int getTotalContacts();
     };
     
 
-// functions
+// * functions
 void addNewContact();
 void showAllContacts();
 std::string handleLine();
